@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Form_Practice</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+    <h1>먹고 싶은 것 고르기</h1>
+
+    <table>
+        <tr>
+            <td><label for="username">이름</label></td>
+            <td><input id="username" type="text" name="username" /></td>
+        </tr>
+        <tr>
+            <td>성별</td>
+            <td>
+                <input id="man" type="radio" name="gender" value="m" />
+                <label for="man">남자</label>
+                <input id="woman" type="radio" name="gender" value="w" />
+                <label for="woman">여자</label>
+            </td>
+        </tr>
+    </table>
+    <br>
+
+    <h3>한식</h3>
+    <select>
+        <option>삼겹살</option>
+        <option>제육볶음</option>
+        <option>불고기</option>
+        <option>족발</option>
+        <option selected>고기 안먹기</option>
+    </select>
+    <select>
+        <option>조기</option>
+        <option>고등어</option>
+        <option>임연수</option>
+        <option>갈치</option>
+        <option selected>생선 안먹기</option>
+    </select>
+    <select>
+        <option>김치찌개</option>
+        <option>된장찌개</option>
+        <option>부대찌개</option>
+        <option>순두부찌개</option>
+        <option selected>국/탕 안먹기</option>
+    </select>
+    <br>
+    <br>
+
+    <h3>중식</h3>
+    식사부 : 
+    <input type="radio" name="rad_ch_main" value="1">짜장면
+    <input type="radio" name="rad_ch_main" value="2">짬뽕
+    <input type="radio" name="rad_ch_main" value="3">울면
+    <input type="radio" name="rad_ch_main" value="4">잡채밥
+    <input type="radio" name="rad_ch_main" value="5">안먹기<br>
+    요리부 : 
+    <input type="radio" name="rad_ch_sub" value="1">탕수육
+    <input type="radio" name="rad_ch_sub" value="2">칠리새우
+    <input type="radio" name="rad_ch_sub" value="3">유린기
+    <input type="radio" name="rad_ch_sub" value="4">마파두부
+    <input type="radio" name="rad_ch_main" value="5">안먹기<br>
+    <br>
+
+    <h3>일식(초밥)</h3>
+    <input type="checkbox" name="chk_sushi_salmon" value="SALMON">연어초밥
+    <input type="text" name="num_sushi_salmon" size="2">개<br>
+    <input type="checkbox" name="chk_sushi_tuna" value="TUNA">참치초밥
+    <input type="text" name="num_sushi_tuna" size="2">개<br>
+    <input type="checkbox" name="chk_sushi_gwang" value="GWANG">광어초밥
+    <input type="text" name="num_sushi_gwang" size="2">개<br>
+    <input type="checkbox" name="chk_sushi_tamago" value="EGG">계란초밥
+    <input type="text" name="num_sushi_tamago" size="2">개<br>
+    <br>
+    장국?
+    <input type="radio" name="rad_jp_soup" value="0">안먹어요
+    <input type="radio" name="rad_jp_soup" value="1">조금 주세요
+    <input type="radio" name="rad_jp_soup" value="2">적당히 주세요
+    <input type="radio" name="rad_jp_soup" value="3">많이 주세요<br>
+
+    <br>
+    <br>
+    <h3>요청 사항</h3><br>
+    <input type="text" name="request" size="50">
+    <br>
+    <br>
+
+    <input type="submit" name="btn_submit" value="냠냠(제출하기)"><br>
+
+
+
+
+
+</body>
+</html>
