@@ -1,77 +1,66 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <meta charset='utf-8'>
-        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-        <title>Select_Test</title>
-        <meta name='viewport' content='width=device-width, initial-scale=1'>
-        <script>
-            function getCheckboxValue() {
-                // 선택된 목록 가져오기
-                const query = 'input[name="animal"]:checked';
-                const selectedEls = document.querySelectorAll(query);
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Select_Test</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script>
+        function getCheckboxValue() {
+            // 선택된 목록 가져오기
+            const query = 'input[name="animal"]:checked';
+            const selectedEls =
+                document.querySelectorAll(query);
 
-                // 선택된 목록에서 value 찾기
-                let result = '';
-                selectedEls.forEach((el) => {
-                    result += el.value + ' ';
-                });
+            // 선택된 목록에서 value 찾기
+            let result = '';
+            selectedEls.forEach((el) => {
+                result += el.value + ' ';
+            });
 
-                // 출력
-                document
-                    .getElementById('result_check')
-                    .innerText = result;
-            }
-            function getRadio() {
+            // 출력
+            document.getElementById('result_check').innerText
+                = result;
+        }
+        function getRadio(event) {
+            document.getElementById('result').innerText =
+                event.target.value;
+        }
+        function getSelect(e) {
+            // 선택된 데이터의 텍스트값 가져오기
+            const text = e
+                .options[e.selectedIndex]
+                .text;
 
-                const genderNodeList = document.getElementsByName('gender');
+            console.log(e.options);
 
-                genderNodeList.forEach((node) => {
-                    if (node.checked) {
-                        document
-                            .getElementById('result_radio')
-                            .innerText = node.value;
-                    }
-                })
-            }
-            function getSelect(e) {
-                // 선택된 데이터의 텍스트값 가져오기
-                const text = e
-                    .options[e.selectedIndex]
-                    .text;
+            // 선택한 텍스트 출력
+            document
+                .getElementById('result_select')
+                .innerText = text;
+        }
+    </script>
+</head>
 
-                console.log(e.options);
+<body>
+    <input type='checkbox' name='animal' value='dog' onclick='getCheckboxValue()' /> 개
 
-                // 선택한 텍스트 출력
-                document
-                    .getElementById('result_select')
-                    .innerText = text;
-            }
-        </script>
-    </head>
+    <input type='checkbox' name='animal' value='cat' onclick='getCheckboxValue()' /> 고양이
 
-    <body>
-        <input type='checkbox' name='animal' value='dog'/>
-        개
-        <input type='checkbox' name='animal' value='cat'/>
-        고양이
-        <button onclick='getCheckboxValue()'>확인</button>
+    <div id='result_check'></div>
 
-        <div id='result_check'></div>
+    <input type='radio' name='gender' value='female' onclick='getRadio(event)' />여성
+    <input type='radio' name='gender' value='male' onclick='getRadio(event)' />남성
+    <div id='result'></div>
 
-        <input type='radio' name='gender' value='female'/>여성
-        <input type='radio' name='gender' value='male'/>남성
-        <button onclick='getRadio()'>확인</button>
-        <div id='result_radio'></div>
-
-        <select name="language" onchange="getSelect(this)">
-            <option value="korean">한국어</option>
-            <option value="english">영어</option>
-            <option value="chinese">중국어</option>
-            <option value="spanish">스페인어</option>
-        </select>
-        <div id='result_select'></div>
-    </body>
+    <select name="language" onchange="getSelect(this)">
+        <option value="korean">한국어</option>
+        <option value="english">영어</option>
+        <option value="chinese">중국어</option>
+        <option value="spanish">스페인어</option>
+    </select>
+    <div id='result_select'></div>
+</body>
 
 </html>

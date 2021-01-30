@@ -1,21 +1,94 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>냠냠 고르기 | 주혀니 깃허브</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-
-    <script language="javascript">
-        function menu() {
-
+    <style>
+        table {
+            text-align: center;
         }
+    </style>
+    <script language="javascript">
+        /* 한식 메뉴 */
+        function getMeat(e) {
+            const text = e
+                .options[e.selectedIndex]
+                .text;
+
+            console.log(e.options);
+
+            document
+                .getElementById('result_meat')
+                .innerText = text;
+        }
+
+        function getFish(e) {
+            const text = e
+                .options[e.selectedIndex]
+                .text;
+
+            console.log(e.options);
+
+            document
+                .getElementById('result_fish')
+                .innerText = text;
+        }
+
+        function getSoup(e) {
+            const text = e
+                .options[e.selectedIndex]
+                .text;
+
+            console.log(e.options);
+
+            document
+                .getElementById('result_soup')
+                .innerText = text;
+        }
+        /* 중식 메뉴 */
+        function getMain(event) {
+            const main = ["짜장면", "짬뽕", "울면", "잡채밥", "안먹기"]
+            document.getElementById('result_main').innerText =
+                main[event.target.value];
+        }
+
+        function getSub(event) {
+            const sub = ["탕수육", "칠리새우", "유린기", "마파두부", "안먹기"]
+            document.getElementById('result_sub').innerText =
+                sub[event.target.value];
+        }
+
+        /* 일식 메뉴 */
+        function getSushi() {
+            const query = 'input[name="sushi"]:checked';
+            const selectedEls =
+                document.querySelectorAll(query);
+
+            let result = '';
+            selectedEls.forEach((el) => {
+                result += el.value + ' ';
+            });
+
+            document.getElementById('result_sushi').innerText
+                = result;
+        }
+
+        function getJpSoup(event) {
+            const jp_soup = ["안먹어요", "조금 주세요", "적당히 주세요", "많이 주세요"]
+            document.getElementById('result_jp_soup').innerText =
+                "장국 " + jp_soup[event.target.value];
+        }
+
         function yam() {
             alert("냠냠😋")
         }
     </script>
 
 </head>
+
 <body>
     <form>
         <h1>먹고 싶은 것 고르기</h1>
@@ -23,7 +96,7 @@
         <table>
             <tr>
                 <td><label for="username">이름 : </label></td>
-                <td><input id="username" type="text" name="username" placeholder="이름을 적어주세요"/></td>
+                <td><input id="username" type="text" name="username" placeholder="이름을 적어주세요" /></td>
             </tr>
             <tr>
                 <td>성별 : </td>
@@ -38,26 +111,27 @@
         <br>
 
         <h3>한식</h3>
-        <select>
-            <option>삼겹살</option>
-            <option>제육볶음</option>
-            <option>불고기</option>
-            <option>족발</option>
-            <option selected>고기 안먹기</option>&nbsp;
+        <select name="meat" onchange="getMeat(this)">
+            <option value="m_belly">삼겹살</option>
+            <option value="m_chili">제육볶음</option>
+            <option value="m_bul">불고기</option>
+            <option value="m_foot">족발</option>
+            <option value="m_no" selected>고기 안먹기</option>&nbsp;
         </select>
-        <select>
-            <option>조기</option>
-            <option>고등어</option>
-            <option>임연수</option>
-            <option>갈치</option>
-            <option selected>생선 안먹기</option>&nbsp;
+
+        <select name="fish" onchange="getFish(this)">
+            <option value="f_jogi">조기</option>
+            <option value="f_dnh">고등어</option>
+            <option value="f_im">임연수</option>
+            <option value="f_gal">갈치</option>
+            <option value="f_no" selected>생선 안먹기</option>&nbsp;
         </select>
-        <select>
-            <option>김치찌개</option>
-            <option>된장찌개</option>
-            <option>부대찌개</option>
-            <option>순두부찌개</option>
-            <option selected>국/탕 안먹기</option>
+        <select name="soup" onchange="getSoup(this)">
+            <option value="s_kim">김치찌개</option>
+            <option value="s_soy">된장찌개</option>
+            <option value="s_ham">부대찌개</option>
+            <option value="s_tofu">순두부찌개</option>
+            <option value="s_no" selected>국/탕 안먹기</option>
         </select>
         <br>
         <br>
@@ -67,19 +141,19 @@
             <tbody>
                 <tr>
                     <td>식사부 : </td>
-                    <td><input type="radio" name="rad_ch_main" value="1">짜장면</td>
-                    <td><input type="radio" name="rad_ch_main" value="2">짬뽕</td>
-                    <td><input type="radio" name="rad_ch_main" value="3">울면</td>
-                    <td><input type="radio" name="rad_ch_main" value="4">잡채밥</td>
-                    <td><input type="radio" name="rad_ch_main" value="5">안먹기</td>
+                    <td><input type="radio" name="ch_main" value="0" onclick="getMain(event)">짜장면</td>
+                    <td><input type="radio" name="ch_main" value="1" onclick="getMain(event)">짬뽕</td>
+                    <td><input type="radio" name="ch_main" value="2" onclick="getMain(event)">울면</td>
+                    <td><input type="radio" name="ch_main" value="3" onclick="getMain(event)">잡채밥</td>
+                    <td><input type="radio" name="ch_main" value="4" onclick="getMain(event)">안먹기</td>
                 </tr>
                 <tr>
                     <td>요리부 : </td>
-                    <td><input type="radio" name="rad_ch_sub" value="1">탕수육</td>
-                    <td><input type="radio" name="rad_ch_sub" value="2">칠리새우</td>
-                    <td><input type="radio" name="rad_ch_sub" value="3">유린기</td>
-                    <td><input type="radio" name="rad_ch_sub" value="4">마파두부</td>
-                    <td><input type="radio" name="rad_ch_sub" value="5">안먹기</td>
+                    <td><input type="radio" name="rad_ch_sub" value="0" onclick="getSub(event)">탕수육</td>
+                    <td><input type="radio" name="rad_ch_sub" value="1" onclick="getSub(event)">칠리새우</td>
+                    <td><input type="radio" name="rad_ch_sub" value="2" onclick="getSub(event)">유린기</td>
+                    <td><input type="radio" name="rad_ch_sub" value="3" onclick="getSub(event)">마파두부</td>
+                    <td><input type="radio" name="rad_ch_sub" value="4" onclick="getSub(event)">안먹기</td>
                 </tr>
             </tbody>
         </table>
@@ -87,33 +161,58 @@
         <br>
 
         <h3>일식(초밥)</h3>
-        <input type="checkbox" name="chk_sushi_salmon" value="SALMON">연어초밥
-        <input type="number" name="num_sushi_salmon" size="2">개<br>
-        <input type="checkbox" name="chk_sushi_tuna" value="TUNA">참치초밥
-        <input type="number" name="num_sushi_tuna" size="2">개<br>
-        <input type="checkbox" name="chk_sushi_gwang" value="GWANG">광어초밥
-        <input type="number" name="num_sushi_gwang" size="2">개<br>
-        <input type="checkbox" name="chk_sushi_tamago" value="EGG">계란초밥
-        <input type="number" name="num_sushi_tamago" size="2">개<br>
+        <input type="checkbox" name="sushi" value="0" onclick="getSushi">연어초밥
+        <input type="number" name="num_salmon" >개<br>
+
+        <input type="checkbox" name="sushi" value="1" onclick="getSushi">참치초밥
+        <input type="number" name="num_tuna" >개<br>
+
+        <input type="checkbox" name="sushi" value="2" onclick="getSushi">광어초밥
+        <input type="number" name="num_gwang" >개<br>
+
+        <input type="checkbox" name="sushi" value="3" onclick="getSushi">계란초밥
+        <input type="number" name="num_tamago" >개<br>
+
         <br>
         장국?
-        <input type="radio" name="rad_jp_soup" value="0">안먹어요
-        <input type="radio" name="rad_jp_soup" value="1">조금 주세요
-        <input type="radio" name="rad_jp_soup" value="2">적당히 주세요
-        <input type="radio" name="rad_jp_soup" value="3">많이 주세요<br>
+        <input type="radio" name="jp_soup" value="0" onclick="getJpSoup(event)">안먹어요
+        <input type="radio" name="jp_soup" value="1" onclick="getJpSoup(event)">조금 주세요
+        <input type="radio" name="jp_soup" value="2" onclick="getJpSoup(event)">적당히 주세요
+        <input type="radio" name="jp_soup" value="3" onclick="getJpSoup(event)">많이 주세요<br>
+
+
 
         <br>
         <br>
-        <h3>요청 사항</h3>
+        <h3>내가 고른 메뉴</h3>
+        <table>
+            <tr>
+                <td>한식 : </td>
+                <td><span id='result_meat'></span></td>
+                <td><span id='result_fish'></span></td>
+                <td><span id='result_soup'></span></td>
+            </tr>
+            <tr>
+                <td>중식 : </td>
+                <td><span id='result_main'></span></td>
+                <td><span id='result_sub'></span></td>
+            </tr>
+            <tr>
+                <td>일식 : </td>
+                <td><span id='result_sushi'></span></td>
+                <td><span id='result_jp_soup'></span></td>
+            </tr>
+
+        </table>
+        <!--<input type="text" name="request" size="50" placeholder="어떻게 하면 여기 메뉴가 나오게 할 수 있을까요?">-->
+        <!--<input type="button" name="btn_menu" value="메뉴 확인하기">-->
+        <br>
+        <br>
+        <h2>요청 사항</h2>
         <input type="text" name="request" size="50" placeholder="맛있게 해주세요">
-        <br>
-        <br>
-        <h2>내가 고른 메뉴</h2>
-            <input type="text" name="request" size="50" placeholder="어떻게 하면 여기 메뉴가 나오게 할 수 있을까요?">
-            <input type="button" name="btn_menu" value="메뉴 확인하기">
-            <br>
-            <input type="reset" name="btn_reset" value="안머거!!!(다시고르기)">
-            <input type="reset" name="btn_yam" value="냠냠(제출하기)" onclick="yam()">
+        <br><br>
+        <input type="reset" name="btn_reset" value="안머거!!!(다시고르기)">
+        <input type="reset" name="btn_yam" value="냠냠(제출하기)" onclick="yam()">
     </form>
 
 
@@ -121,4 +220,5 @@
 
 
 </body>
+
 </html>
